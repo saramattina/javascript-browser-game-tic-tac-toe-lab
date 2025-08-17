@@ -46,99 +46,74 @@ let resetBtn = document.querySelector("button");
 //   be called to render this game state.
 
 const init = () => {
-  // console.log("hello");
-//   board = ["", "", "", "", "", "", "", "", ""];
+  board = ["", "", "", "", "", "", "", "", ""];
   currentPlayer = "X";
   winner = false;
   tie = false;
-  squareEls.forEach((sqr) => sqr.textContent = "");
+  squareEls.forEach((sqr) => (sqr.textContent = ""));
   messageEl.textContent = "Let's play! " + turnMessage();
 };
-
-
-//4) The state of the game should be rendered to the user.
-// const render = () => {
-//   updateBoard();
-  //   updateMessage();
-// };
 
 
 const updateBoard = () => {
-    board.forEach((sqr, idx) => {
-      squareEls[idx].textContent = sqr;
-    });
-  };
-// check again ^
+  board.forEach((sqr, idx) => {
+    squareEls[idx].textContent = sqr;
+  });
+};
 
-  const placePiece = (i) => {
-    // update board array with squareEl.index
-    board[i] = currentPlayer;
-    updateBoard();
-  };
+const placePiece = (i) => {
+  board[i] = currentPlayer;
+  updateBoard();
+};
 
 //7) Create Reset functionality.
-const reset = () => {
-  currentPlayer = "X";
-  messageEl.textContent = "Let's play! " + turnMessage();
-  winner = false;
-  tie = false;
-  squareEls.forEach((sqr) => (sqr.innerText = ""));
-};
-// check again ^
-
+// used init() since it was literally the same
 
 const checkForTie = () => {
-    if (!board.includes("")) {
-      tie = true;
-      messageEl.textContent = tieMessage();
-    }
-  };
- // check again- tie message appearing even if one player won 
+  if (!board.includes("") && !winner) {
+    tie = true;
+    messageEl.textContent = tieMessage();
+  }
+};
 
-  const checkForGameEnd = () => {
-    winningCombos.forEach((combo) => {
-      const [a, b, c] = combo;
-      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        winner = true;
-        messageEl.textContent = winMessage();
-      }
-    });
-  };
-  
+const checkForGameEnd = () => {
+  winningCombos.forEach((combo) => {
+    const [a, b, c] = combo;
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      winner = true;
+      messageEl.textContent = winMessage();
+    }
+  });
+};
 
 const switchPlayerTurn = () => {
   currentPlayer = currentPlayer === "X" ? "O" : "X";
   if (!winner && !tie) {
     messageEl.innerText = turnMessage();
   }
-  
 };
 
-// console.log("Turn is: " + turn);
-// console.log(board)
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 //6) Handle a player clicking a square with a `handleClick` function.
 
-
 const handleSqrClick = (event) => {
-    const clickedSqrIdx = parseInt(event.target.id);
-  
-    if (winner || board[clickedSqrIdx] !== "") return;
-  
-    placePiece(clickedSqrIdx);
-    checkForGameEnd();
-    checkForTie();
-    if (!winner && !tie) switchPlayerTurn();
-  };
+  const clickedSqrIdx = parseInt(event.target.id);
+
+  if (winner || board[clickedSqrIdx] !== "") return;
+
+  placePiece(clickedSqrIdx);
+  checkForGameEnd();
+  checkForTie();
+
+  if (!winner && !tie) switchPlayerTurn();
+};
 
 squareEls.forEach((squareEl) => {
-  squareEl.addEventListener("click", handleSqrClick)});
+  squareEl.addEventListener("click", handleSqrClick);
+});
 
-
-resetBtn.addEventListener("click", reset);
+resetBtn.addEventListener("click", init);
 
 init();
-
-

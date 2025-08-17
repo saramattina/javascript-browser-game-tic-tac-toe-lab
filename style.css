@@ -1,7 +1,8 @@
 body {
-    background-color: rgba(127, 124, 217, 0.555);
+    background-color: #63A0CF;
     /* Use a system font, if none are available use an available sans-sarif */
-    font-family: system-ui, sans-serif;
+    /* font-family: system-ui, sans-serif; */
+    font-family: "Bebas Neue", sans-serif;
     margin: 0;
     text-align: center;
   }
@@ -24,19 +25,23 @@ body {
   }
 
   .sqr:hover {
-    background-color:rgba(109, 171, 221, 0.502);
+    background-color:khaki;
   }
 
   h1, h2 {
-    color:rgb(77, 25, 125);
-    
+    color: whitesmoke;
+    text-shadow: -1px 1px black;
+   
   }
 
   h1 {
     font-style: italic;
+    font-size: 40px;
   }
+  
 
-
-
+  button {
+    margin-top: 15px;
+  }
   
   
