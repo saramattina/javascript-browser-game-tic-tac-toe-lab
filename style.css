@@ -1,0 +1,42 @@
+body {
+    background-color: rgba(127, 124, 217, 0.555);
+    /* Use a system font, if none are available use an available sans-sarif */
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 325px;
+    margin: 0 auto;
+    
+  }
+  
+  .sqr {
+    width: 30%;
+    aspect-ratio: 1/1;
+    border: 3px solid black;
+    font-size: 64px;
+    text-align: center;
+    background-color: whitesmoke;
+  }
+
+  .sqr:hover {
+    background-color:rgba(109, 171, 221, 0.502);
+  }
+
+  h1, h2 {
+    color:rgb(77, 25, 125);
+    
+  }
+
+  h1 {
+    font-style: italic;
+  }
+
+
+
+  
+  
